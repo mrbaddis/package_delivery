@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+};
+
+:root {
+  --primary-bg-color: blue;
+}
+
+.search {
+  margin-bottom: 1rem;
+}
+
+.flex-between {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.text-black, table-cell-edit-mode {
+  color: #1a1a1a !important;
+}
+
+input.completer-input {
+  height: 35px;
+}
+
+.invoice-table {
+
+  ng2-st-tbody-edit-delete{
+    display: none !important;
+  }
+
+  ng2-st-tbody-custom {
+    display: flex;
+  }
+}
+
+
+.ng2-smart-actions input[type="checkbox"] {
+  width: 1.3rem;
+  margin: 0 auto;
+}
+
+
+.table-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.navigation .link nb-icon {
+  display: none !important;
+}
+
+.customer-invoice-table td.ng2-smart-actions{
+  display: flex !important;
+  border: none !important;
+  justify-content: space-around !important;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+
+.invoice-total {
+  background: #4CAF50;
+  position: fixed;
+  bottom: 61px;
+  right: 4rem;
+  padding: 1rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  p{
+    font-size: 18px;
+  }
+  h1 {
+    margin: 0px;
+  }
+}
+
+.before-dark {
+  height: 32px;
+  &::before {
+    font-size: 1.5rem;
+    color: #222b45;
+  }
+}
+
+nb-sidebar{
+  .menu-title {
+    color: white;
+    nb-icon {
+      color: white !important;
+    }
+  }
+}
+
+.nb-theme-default nb-menu .menu-item a.active .menu-icon {
+  color: #FFEB3B !important;
+}
+
+:host ::ng-deep table tr:first-child th { position : sticky; top: -1px; z-index: 100; background: white; border: 1px solid #dee2e6; height: 58px; }
+
+.color-picker {
+  position:  initial !important;
+}

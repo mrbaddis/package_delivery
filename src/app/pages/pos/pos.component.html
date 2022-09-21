@@ -1,0 +1,123 @@
+<nb-card>
+    <nb-card-header> POS </nb-card-header>
+    <nb-card-body>
+  
+        <div class="pos-grid">
+            <div id="customer-sidebar">
+                <div>
+                    <nb-form-field class="search">
+                      <input #search (keyup)="searchForCustomers(search.value)" placeholder="Customer Name"  type="text" nbInput />
+                      <button nbSuffix nbButton ghost>
+                        <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+                      </button>
+                    </nb-form-field>
+                  </div>
+
+                  <div class="customer-list">
+                    <div class="customer-grid">
+                      <div class="customer-grid-item" *ngFor="let user of usersFound">
+                        <nb-card (click)="loadPackagesForCustomer(user.id)" accent="info">
+                          <nb-card-header>
+                            <nb-user
+                            *ngIf="user.name"
+                              name="{{user.name}}"
+                              title="{{user.mailboxNumber}}"
+                            >
+                            </nb-user
+                          ></nb-card-header>
+                          <!-- <nb-card-body>
+                          </nb-card-body> -->
+                        </nb-card>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+
+            <div id="choose-package">
+                <div>
+                    <!-- <h1>Choose packages</h1> -->
+                    
+                    <!-- <div class="flex-between"> -->
+                        <nb-form-field class="search">
+                            <input placeholder="Filter Packages"  type="text" nbInput />
+                            <button nbSuffix nbButton ghost>
+                              <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+                            </button>
+                          </nb-form-field>
+                          <button *ngIf="courierPackages.length > 0" (click)="selectOrUnselectAll()" nbButton ghost>
+                            <nb-icon icon="square">square</nb-icon>
+                            Select all
+                        </button>
+                         
+
+                    <!-- </div> -->
+                    
+                    <div id="package-grid">
+                        <div (click)="onPackageGridItemClick(i, courierPackage)" [class.selected]="isPackageInOrder(courierPackage.trackingNo)" class="package-item" *ngFor="let courierPackage of courierPackages; let i=index">
+                            <div class="image-container">
+                                <img src="https://ik.imagekit.io/47zhisylvftkf/pre-alert_gXLRthkFlLI.png" alt="">
+                            </div>
+                            
+                            <div id="package-info">
+                                <p class="tracking-no">{{courierPackage.trackingNo}}</p>
+                                <p class="merchant">{{courierPackage.merchant}}</p>
+                                <p class="weight">{{courierPackage.weight}} lbs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="order-totals">
+                <div>
+              <div class="order-totals">
+                <div>
+                    <h5># of Packages: {{order.packages.length}}</h5>
+                    <hr>
+                    <h5>Sub Total: {{order.subtotal | currency}}</h5>
+                    <hr>
+                    <h5>Tax ({{order.taxRate * 100}}%): {{order.tax | currency}}</h5>
+                    <hr>
+                    <h5> <button nbButton>
+                        <nb-icon icon="edit"></nb-icon>
+                    </button> Discount: {{order.discount | currency}} </h5>
+                    <hr>
+                    <h4>Total: {{order.total | currency}}</h4>
+                    <hr>
+                </div>
+                <div>
+                   <div class="flex-between">
+                    <button nbButton status="success">
+                        CASH <nb-icon icon="plus"></nb-icon>
+                      </button>
+                      <button nbButton status="success">
+                        CARD <nb-icon icon="credit-card-outline"></nb-icon>
+                      </button>
+                   </div>
+                </div>
+                <hr>
+                <div>
+                    <button nbButton status="info">
+                        COMPLETE CHECKOUT & SEND EMAIL
+                      </button>
+                </div>
+              </div>
+          </div>
+            </div>
+
+        </div>
+
+          
+
+          
+
+          
+          
+       
+  
+
+    </nb-card-body>
+  </nb-card>
+  

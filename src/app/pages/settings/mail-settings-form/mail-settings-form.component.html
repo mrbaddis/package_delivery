@@ -1,0 +1,74 @@
+<form *ngIf="settingsForm" [formGroup]="settingsForm">
+  <div class="row">
+    <div [ngSwitch]="settingsForm.controls.method.value" class="col-sm-12">
+      <h5>Method</h5>
+      <hr>
+
+
+        <div class="form-group">
+          <label class="label">
+            Mailing Method
+          </label>
+          <nb-select placeholder="Select Mailing Method" fullWidth [formControl]="settingsForm.controls.method">
+            <nb-option [value]="i"  *ngFor="let method of methods; let i=index">
+              {{method.name}}
+            </nb-option>
+          </nb-select>
+        </div>
+        <ng-container *ngSwitchCase="0">
+            <div class="form-group">
+              <label class="label">
+                Host
+              </label>
+              <input fullWidth nbInput [formControl]="settingsForm.controls.host" />
+            </div>
+            <div class="form-group">
+              <label class="label">
+                Port
+              </label>
+              <input fullWidth nbInput [formControl]="settingsForm.controls.port" />
+            </div>
+            <div class="form-group">
+              <label class="label">
+                User
+              </label>
+              <input fullWidth nbInput [formControl]="settingsForm.controls.user" />
+            </div>
+            <div class="form-group">
+              <label class="label">
+                Password
+              </label>
+              <input type="password" fullWidth nbInput [formControl]="settingsForm.controls.password" />
+            </div>
+            <div class="form-group">
+              <nb-toggle [formControl]="settingsForm.controls.secure">Secure</nb-toggle>
+            </div>
+            <div class="form-group">
+              <nb-toggle [formControl]="settingsForm.controls.rejectUnauthorized">Reject Unauthorized</nb-toggle>
+            </div>
+            <button status="primary" (click)="testSmtpConnection()" nbButton outline>TEST CONNECTION</button>
+      </ng-container>
+
+
+          <ng-container *ngSwitchCase="1">
+            <div class="form-group">
+              <label class="label">
+               Send Grid API Key
+              </label>
+              <input type="password" fullWidth nbInput [formControl]="settingsForm.controls.sendGridApiKey" />
+            </div>
+            <button status="primary" (click)="testSendGridConnection()" nbButton outline>TEST CONNECTION</button>
+          </ng-container>
+    </div>
+
+    <!-- <div class="col-sm-6">
+      <h5>Method</h5>
+      <hr>
+
+    </div> -->
+
+  </div>
+  <div class="btn-row btn">
+    <button (click)="updateSettings()" [disabled]="settingsForm.invalid" nbButton status="success">UPDATE</button>
+  </div>
+</form>

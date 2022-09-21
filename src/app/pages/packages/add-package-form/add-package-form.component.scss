@@ -1,0 +1,15 @@
+nb-card {
+  max-width: 50%;
+  margin: 0 auto;
+  form {
+    max-height: 70vh;
+    width: 100%;
+    input, textarea, nb-select, select {
+      width: 100%;
+      max-width: 100% !important;
+      margin-bottom: 1rem;
+    }
+
+
+  }
+}

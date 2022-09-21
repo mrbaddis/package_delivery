@@ -1,0 +1,236 @@
+<form *ngIf="settingsForm" [formGroup]="settingsForm">
+  <div class="row">
+    <div class="col-sm-6">
+      <h5>General Settings</h5>
+      <hr>
+
+          <div class="form-group">
+            <nb-toggle [formControl]="settingsForm.controls.useJmd">Use JMD</nb-toggle>
+          </div>
+
+          <div class="form-group">
+            <label class="label">
+              Name
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.name" />
+          </div>
+
+          <div class="form-group">
+            <label class="label">
+              System Prefix
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.prefix" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Exchange Rate
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.exchangeRate" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Business Exchange Rate
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.businessExchangeRate" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Processing Fee 1
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.processingFee1" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Processing Fee 2
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.processingFee2" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              GCT
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.gct" />
+          </div>
+    </div>
+    <div class="col-sm-6">
+      <h5>Notifications</h5>
+      <hr>
+      <div class="form-group">
+        <nb-toggle [formControl]="settingsForm.controls.showNotificationOnInvoice">Show Notification on Invoice</nb-toggle>
+      </div>
+
+      <div class="form-group">
+        <label>Invoice Notification Title</label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.invoiceNotificationTitle" />
+      </div>
+
+      <div class="form-group">
+        <label>Invoice Notification Message</label>
+        <textarea rows="5" fullWidth nbInput [formControl]="settingsForm.controls.invoiceNotificationMessage" >
+        </textarea>
+      </div>
+
+      <div class="form-group">
+        <nb-toggle [formControl]="settingsForm.controls.showNotificationInApp">Show Notification in App</nb-toggle>
+      </div>
+
+      <div class="form-group">
+        <label>App Notification Title</label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.appNotificationTitle" />
+      </div>
+
+      <div class="form-group">
+        <label>App Notification Message</label>
+        <textarea rows="5" fullWidth nbInput [formControl]="settingsForm.controls.appNotificationMessage" >
+        </textarea>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <h5>Warehouse Address</h5>
+      <hr>
+          <div class="form-group">
+            <label class="label">
+             Street 1
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.wStreet1" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Street 2
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.wStreet2" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              City
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.wCity" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              State
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.wState" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Zip
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.wZip" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Country
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.wCountry" />
+          </div>
+    </div>
+    <div class="col-sm-6">
+      <h5>Store Address</h5>
+      <hr>
+      <div class="form-group">
+        <label class="label">
+         Store Street 1
+        </label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.sStreet1" />
+      </div>
+      <div class="form-group">
+        <label class="label">
+          Store Street 2
+        </label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.sStreet2" />
+      </div>
+      <div class="form-group">
+        <label class="label">
+          Store City
+        </label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.sCity" />
+      </div>
+      <div class="form-group">
+        <label class="label">
+          Store State
+        </label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.sState" />
+      </div>
+      <div class="form-group">
+        <label class="label">
+          Store Zip
+        </label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.sZip" />
+      </div>
+      <div class="form-group">
+        <label class="label">
+          Store Country
+        </label>
+        <input fullWidth nbInput [formControl]="settingsForm.controls.sCountry" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h5>Contact Information</h5>
+      <hr>
+          <div class="form-group">
+            <label class="label">
+             Mobile Phone
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.mobilePhone" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Work Phone
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.workPhone" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Home Phone
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.homePhone" />
+          </div>
+          <div class="form-group">
+            <label class="label">
+              Secondary Email
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.secondaryEmail" />
+          </div>
+    </div>
+
+    <div class="col-sm-6">
+      <h5>Other Settings</h5>
+      <hr>
+          <div class="form-group">
+            <label class="label">
+             Google Tracking Id
+            </label>
+            <input fullWidth nbInput [formControl]="settingsForm.controls.ga" />
+          </div>
+          <div class="form-group">
+            <nb-toggle [formControl]="settingsForm.controls.pwaSupported">PWA Enabled</nb-toggle>
+          </div>
+          <div class="form-group">
+            <nb-toggle disabled [formControl]="settingsForm.controls.referralEnabled">Referral Enabled</nb-toggle>
+          </div>
+          <div class="form-group">
+            <nb-toggle disabled [formControl]="settingsForm.controls.pointsEnabled">Points Enabled</nb-toggle>
+          </div>
+          <div class="form-group">
+            <nb-toggle disabled [formControl]="settingsForm.controls.notificationEnabled">Notifications Enabled</nb-toggle>
+          </div>
+          <div class="form-group">
+            <nb-toggle disabled [formControl]="settingsForm.controls.paymentsEnabled">Payments Enabled</nb-toggle>
+          </div>
+    </div>
+  </div>
+
+
+  <div class="btn-row btn">
+    <button (click)="updateSettings()" [disabled]="settingsForm.invalid" nbButton status="success">UPDATE</button>
+    <button class="pull-right" (click)="checkForUpdate()" nbButton status="primary">Check for Update</button>
+  </div>
+
+</form>

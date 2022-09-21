@@ -1,0 +1,52 @@
+.pos-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+
+    .customer-list {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    #package-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        max-height: 70vh;
+        overflow-y: auto;
+        gap: 1rem;
+
+        .package-item {
+            &:hover {
+                background-color: #f7f7f7;
+            }
+            cursor: pointer;
+            p {
+                margin-bottom: 0px;
+                text-align: center;
+            }
+
+            .tracking-no {
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .merchant {
+                font-size: 14px;
+            }
+
+            .image-container {
+                text-align: center;
+            }
+            
+        }
+
+        .package-item.selected {
+            background-color: var(--primary-bg-color);
+        }
+    }
+
+    #order-totals {
+        background-color: #f7f7f7;
+        padding: 1rem
+    }
+}

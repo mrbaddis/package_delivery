@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Ordinary Experts Admin</title>
+    <base href="/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="theme-color" content="#1976d2">
+</head>
+  <body>
+    <style>
+      .spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1003;
+        background: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+      }
+
+      .spinner img {
+        height: 100px;
+        animation-name: bounce-7;
+        animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+    @keyframes bounce-7 {
+        0%   { transform: scale(1,1)      translateY(0); }
+        10%  { transform: scale(1.1,.9)   translateY(0); }
+        30%  { transform: scale(.9,1.1)   translateY(-100px); }
+        50%  { transform: scale(1.05,.95) translateY(0); }
+        57%  { transform: scale(1,1)      translateY(-7px); }
+        64%  { transform: scale(1,1)      translateY(0); }
+        100% { transform: scale(1,1)      translateY(0); }
+      }
+    </style>
+    <ngx-app>
+    <div id="nb-global-spinner" class="spinner">
+      <img src="https://ik.imagekit.io/47zhisylvftkf/Asset_1_3x_08CeSyG4a.png" alt=""/>
+    </ngx-app>
+    </div>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+</html>

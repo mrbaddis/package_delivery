@@ -1,0 +1,73 @@
+<nb-card accent="success">
+  <nb-card-header>Add a Package</nb-card-header>
+  <nb-card-body>
+    <form *ngIf="packageForm" [formGroup]="packageForm" class="form">
+
+      <label class="text-label" >Customer</label>
+      <input
+      (keyup)="filterUsers(query.value)"
+      nbInput
+      type="text"
+      #query
+      [nbAutocomplete]="autoControl" />
+
+    <nb-autocomplete #autoControl>
+
+      <nb-option
+      *ngFor="let option of users"
+      [value]="option.name + ' - ' + mailboxPrefix + '-' + option.mailboxNumber"
+      (click)="setCustomer(option.id)"
+      >
+        {{ option.name }} - {{mailboxPrefix}}-{{option.mailboxNumber}}
+      </nb-option>
+
+    </nb-autocomplete>
+
+
+      <label class="text-label">Tracking #</label>
+      <input formControlName="trackingNo" nbInput  type="text">
+
+      <label class="text-label">Manifest #</label>
+      <input formControlName="manifestNumber" nbInput  type="text">
+
+      <label class="text-label">Description</label>
+      <input formControlName="description" nbInput  type="text">
+
+      <label class="text-label">Weight (lbs)</label>
+      <input formControlName="weight" nbInput  type="text">
+
+      <label class="text-label">Value ($)</label>
+      <input formControlName="value" nbInput  type="text">
+
+      <label class="text-label">Customs Fee ($)</label>
+      <input formControlName="customsFee" nbInput  type="text">
+
+      <label class="text-label">Merchant</label>
+      <nb-select formControlName="merchant">
+        <nb-option [value]="merchant" *ngFor="let merchant of merchants">
+          {{merchant}}
+        </nb-option>
+      </nb-select>
+
+      <label class="text-label">Status</label>
+      <nb-select formControlName="status">
+        <nb-option [value]="status" *ngFor="let status of statuses">
+          {{status}}
+        </nb-option>
+      </nb-select>
+
+      <label class="text-label" for="text">Use Business Rate</label>
+      <nb-select formControlName="businessPackage">
+        <nb-option >No</nb-option>
+        <nb-option value=true>Yes</nb-option>
+      </nb-select>
+
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="flex flex-between">
+      <button (click)="cancel()" nbButton status="danger">Cancel</button>
+    <button (click)="createPackage()" [disabled]="packageForm.invalid" nbButton status="success">Create</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,29 @@
+.forgot-password {
+  cursor: pointer;
+}
+
+button{
+  margin-bottom: 1rem;
+}
+
+.login-logo {
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 120px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  img {
+    width: 100px;
+    text-align: center;
+  }
+}
+
+.version{
+  text-align: center;
+}

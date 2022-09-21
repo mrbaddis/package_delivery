@@ -1,0 +1,58 @@
+<section *ngIf="user">
+  <div class="row">
+    <div class="col-xxl-12">
+      <nb-card accent="info">
+        <nb-card-header>
+          <nb-user
+            name="{{ user.firstName }} {{ user.lastName }}"
+            title="{{ user.mailboxes[0].mailboxNumber | mailbox }}"
+          >
+          </nb-user
+        ></nb-card-header>
+        <nb-card-body>
+          <div *ngIf="balance && packageCount" class="row">
+            <div class="col-sm-3">
+              <nb-icon icon="file-invoice-dollar" pack="fa"></nb-icon>
+              <p *ngIf="balance">
+                Amount Outstanding: {{ balance.totalOutstanding | currency }}
+              </p>
+            </div>
+            <div class="col-sm-3">
+              <nb-icon icon="money-bill" pack="fa"></nb-icon>
+              <p>Amount Paid: {{ balance.totalPaid | currency }}</p>
+            </div>
+            <div class="col-sm-3">
+              <nb-icon icon="box" pack="fa"></nb-icon>
+              <p>Undelivered Packages: {{ packageCount.undeliveredPackages }}</p>
+            </div>
+            <div class="col-sm-3">
+              <nb-icon icon="box-open" pack="fa"></nb-icon>
+              <p>Delivered of Packages: {{ packageCount.deliveredPackages }}</p>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xxl-12">
+      <nb-card accent="info">
+        <nb-card-body>
+          <nb-tabset>
+            <nb-tab tabTitle="Packages">
+              <ngx-customer-package-table (packageUpdated)="onRefreshInvoices()"></ngx-customer-package-table>
+            </nb-tab>
+            <nb-tab tabTitle="Invoices">
+              <ngx-customer-invoice-table [refreshInvoice]="refreshInvoices"></ngx-customer-invoice-table>
+            </nb-tab>
+            <nb-tab *ngIf="isAdmin" tabTitle="Profile">
+              <ngx-customer-profile-form></ngx-customer-profile-form>
+            </nb-tab>
+          </nb-tabset>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+</section>

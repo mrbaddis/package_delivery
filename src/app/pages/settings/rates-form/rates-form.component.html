@@ -1,0 +1,15 @@
+<div class="flex-between">
+  <div>
+    <!-- <nb-toggle (checkedChange)="getRates()" [(ngModel)]="showJMD">Show prices in JMD</nb-toggle> -->
+  </div>
+  <div class="table-actions">
+  <button (click)="resetToDefault()"  nbButton outline status="warning">Reset To Default</button>
+  </div>
+</div>
+
+    <ng2-smart-table
+    (createConfirm)="onEditConfirm($event)"
+      (editConfirm)="onEditConfirm($event)"
+      [settings]="settings"
+      [source]="source" >
+    </ng2-smart-table>

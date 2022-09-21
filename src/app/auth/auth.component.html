@@ -1,0 +1,88 @@
+<div class="login-logo" *ngIf="courierService.courierApplication | async as courier">
+  <img [src]="courier.imageUrl" />
+</div>
+
+<h1 id="title" class="title" [ngSwitch]="authMode">
+  <span *ngSwitchCase="0">Login</span>
+  <span *ngSwitchCase="1">Forgot Password</span>
+  <span *ngSwitchCase="2">Change Password</span>
+</h1>
+<p class="sub-title" [ngSwitch]="authMode">
+  <span *ngSwitchCase="0">Login using your email address</span>
+  <span *ngSwitchCase="1">Enter your email address to reset your password</span>
+  <span *ngSwitchCase="2">Set your new password</span>
+</p>
+
+<form [formGroup]="authForm" #form="ngForm" aria-labelledby="title">
+  <div *ngIf="authMode != 2" class="form-control-group">
+    <label class="label" for="input-email">Email address:</label>
+    <input
+      nbInput
+      fullWidth
+      type="email"
+      name="email"
+      id="input-email"
+      pattern=".+@.+\..+"
+      placeholder="Email address"
+      fieldSize="large"
+      autofocus
+      [formControl]="email"
+    />
+  </div>
+
+  <div *ngIf="authMode != 1" class="form-control-group">
+    <span class="label-with-link">
+      <label class="label" for="input-password">Password:</label>
+      <p href="" (click)="changeMode(1)" class="forgot-password caption-2">
+        Forgot Password?
+      </p>
+    </span>
+    <input
+      nbInput
+      fullWidth
+      name="password"
+      type="password"
+      id="input-password"
+      placeholder="Password"
+      fieldSize="large"
+      [formControl]="password"
+    />
+  </div>
+
+  <div *ngIf="authMode == 2" class="form-control-group">
+    <span class="label-with-link">
+      <label class="label" for="input-password">Confirm Password:</label>
+    </span>
+    <input
+      nbInput
+      fullWidth
+      name="password"
+      type="password"
+      id="input-password"
+      placeholder="Password"
+      fieldSize="large"
+      [formControl]="confirmPassword"
+    />
+  </div>
+
+  <button [disabled]="authForm.invalid || passwordResetTimer" (click)="submit()" nbButton fullWidth status="primary" size="large" [ngSwitch]="authMode">
+    <span *ngSwitchCase="0">Login</span>
+    <span *ngSwitchCase="1">Forgot Password</span>
+    <span *ngSwitchCase="2">Change Password</span>
+  </button>
+  <nb-alert *ngIf="passwordResetTimer" status="info">
+    Please wait {{passwordResetTimer}} seconds before resetting password again
+  </nb-alert>
+
+  <button
+    (click)="changeMode(0)"
+    *ngIf="authMode != 0"
+    nbButton
+    fullWidth
+    size="large"
+  >
+    Back to Login
+  </button>
+</form>
+
+<p class="version">{{versionNumber}}</p>

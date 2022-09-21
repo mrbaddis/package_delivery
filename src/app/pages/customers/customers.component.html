@@ -1,0 +1,42 @@
+<nb-card>
+  <nb-card-header> Customers </nb-card-header>
+  <nb-card-body>
+
+      <div class="flex-between">
+        <div>
+          <nb-form-field class="search">
+            <input (input)="resetSearch(search.value.length)" (keydown)="onSearch(search.value)" placeholder="Search... Enter 2 or more characters" #search type="text" nbInput />
+            <button nbSuffix nbButton ghost (click)="onSearch(search.value)">
+              <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+            </button>
+          </nb-form-field>
+        </div>
+        <div>
+          <mat-form-field class="hidden">
+            <ngx-mat-file-input multiple="false" #fileInput [accept]="acceptedFileTypes" [formControl]="fileUploadForm.controls.file">
+            </ngx-mat-file-input>
+           </mat-form-field>
+          <button (click)="fileInput.open()" *ngIf="!fileUploadForm.controls.file.value && isAdmin"  nbButton outline status="primary">Import Customers</button>
+        <button [disabled]="fileUploadForm.invalid" [nbSpinner]="processing" *ngIf="fileUploadForm.controls.file.value" (click)="importCustomers()" nbButton outline status="success">Upload File</button>
+        <nb-icon (click)="fileUploadForm.reset()" *ngIf="fileUploadForm.controls.file.value" icon="close-outline" pack="eva"> </nb-icon>
+        </div>
+      </div>
+
+
+
+    <ng2-smart-table
+      (userRowSelect)="viewCustomer($event)"
+      [settings]="settings"
+      [source]="source"
+      (deleteConfirm)="onDeleteConfirm($event)"
+      (createConfirm)="onCreateConfirm($event)"
+    >
+    </ng2-smart-table>
+    <!-- <div
+    class="data-grid"
+    >
+      <ngx-customer-item [customer]="customer" *ngFor="let customer of customers">
+      </ngx-customer-item>
+    </div> -->
+  </nb-card-body>
+</nb-card>

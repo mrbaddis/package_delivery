@@ -1,0 +1,28 @@
+<section class="customer-invoice-table">
+  <div class="flex-between">
+    <div>
+      <nb-form-field class="search">
+        <input (keydown.enter)="onSearch(search.value)" placeholder="Search... Enter 3 or more characters" #search type="text" nbInput />
+        <button nbSuffix nbButton ghost (click)="onSearch(search.value)">
+          <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+        </button>
+      </nb-form-field>
+      <nb-toggle (checkedChange)="toggleShowPaid($event)" [(ngModel)]="showPaid">Show Paid</nb-toggle>
+    </div>
+    <button nbButton status="success" [disabled]="selected.length === 0" nbContextMenuTag="bulk-actions-menu" [nbContextMenu]="bulkActions">BULK ACTIONS</button>
+  </div>
+  <ng2-smart-table
+    *ngIf="showTable"
+    (userRowSelect)="onUserRowSelect($event)"
+    [settings]="settings"
+    [source]="invoiceDataSource"
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (custom)="onCustomAction($event)"
+  >
+  </ng2-smart-table>
+</section>
+
+<div *ngIf="selected.length > 0" class="invoice-total">
+  <h1>Total</h1>
+  <p>{{invoiceTotal | currency}}</p>
+</div>

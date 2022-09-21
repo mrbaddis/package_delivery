@@ -1,0 +1,21 @@
+<div class="flex-between">
+  <div>
+    <nb-form-field class="search">
+      <input (keydown.enter)="onPackageSearch(search.value)" placeholder="Search... Enter 3 or more characters" #search type="text" nbInput />
+      <button nbSuffix nbButton ghost (click)="onPackageSearch(search.value)">
+        <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+      </button>
+    </nb-form-field>
+    <nb-toggle (checkedChange)="toggleShowDelivered($event)" [(ngModel)]="showDelivered">Show Delivered</nb-toggle>
+  </div>
+  <button nbButton status="success" [disabled]="selected.length === 0" nbContextMenuTag="bulk-actions-menu" [nbContextMenu]="bulkActions">BULK ACTIONS</button>
+</div>
+            <ng2-smart-table
+              (userRowSelect)="onUserRowSelect($event)"
+              [settings]="settings"
+              [source]="packageDataSource"
+              (deleteConfirm)="onDeleteConfirm($event)"
+              (createConfirm)="onCreateConfirm($event)"
+              (editConfirm)="onEditConfirm($event)"
+            >
+            </ng2-smart-table>

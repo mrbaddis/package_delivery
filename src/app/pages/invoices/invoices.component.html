@@ -1,0 +1,55 @@
+<nb-card>
+  <nb-card-header> Invoices </nb-card-header>
+  <nb-card-body>
+
+    <div class="flex-between">
+    <div>
+      <nb-form-field class="search">
+        <input (keydown)="onSearch(search.value)" placeholder="Search... Enter 3 or more characters" #search type="text" nbInput />
+        <button nbSuffix nbButton ghost (click)="onSearch(search.value)">
+          <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+        </button>
+      </nb-form-field>
+      <nb-toggle (checkedChange)="toggleShowPaid($event)" [(ngModel)]="showPaid">Show Paid</nb-toggle>
+    </div>
+    <button nbButton status="success" [disabled]="selected.length === 0" nbContextMenuTag="bulk-actions-menu" [nbContextMenu]="bulkActions">BULK ACTIONS</button>
+  </div>
+
+    <ng2-smart-table class="invoice-table"
+      (userRowSelect)="onUserRowSelect($event)"
+      (custom)="onCustomAction($event)"
+      [settings]="settings"
+      [source]="source"
+      (deleteConfirm)="onDeleteConfirm($event)"
+    >
+    </ng2-smart-table>
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-select placeholder="Page Limit" (selectedChange)="onLimitChange($event)">
+      <nb-option value=10>
+        10
+      </nb-option>
+      <nb-option value=25>
+        25
+      </nb-option>
+      <nb-option value=50>
+        50
+      </nb-option>
+      <nb-option value=100>
+        100
+      </nb-option>
+      <nb-option value=500>
+        500
+      </nb-option>
+      <nb-option value=1000>
+        1000
+      </nb-option>
+    </nb-select>
+  </nb-card-footer>
+</nb-card>
+
+
+<div *ngIf="selected.length > 0" class="invoice-total">
+  <h1>Total</h1>
+  <p>{{invoiceTotal | currency}}</p>
+</div>

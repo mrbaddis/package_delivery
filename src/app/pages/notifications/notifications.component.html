@@ -1,0 +1,57 @@
+<nb-card class="col-sm-12">
+  <nb-card-header>Send Message</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <h5>Fill out the form</h5>
+        <hr />
+        <form [formGroup]="notificationForm">
+          <nb-form-field>
+            <label>Subject</label>
+            <input
+              [formControl]="notificationForm.controls.subject"
+              nbInput
+              fullWidth
+            />
+          </nb-form-field>
+          <nb-toggle [formControl]="notificationForm.controls.isHtml"
+            >Use HTML File</nb-toggle
+          >
+          <nb-form-field *ngIf="!notificationForm.controls.isHtml.value">
+            <label>Message</label>
+            <textarea
+              rows="5"
+              [formControl]="notificationForm.controls.message"
+              nbInput
+              fullWidth
+            >
+            </textarea>
+          </nb-form-field>
+
+          <ngx-mat-file-input
+          hidden
+            multiple="false"
+            #fileInput
+            [accept]="acceptedFileTypes"
+            [formControl]="notificationForm.controls.html"
+          >
+          </ngx-mat-file-input>
+          <button *ngIf="notificationForm.controls.isHtml.value" (click)="fileInput.open()" nbButton fullWidth [status]="notificationForm.controls.html.value ? 'success':'default'" > <nb-icon icon="attach"></nb-icon> Upload File </button>
+        </form>
+      </div>
+
+      <div class="col-sm-6">
+        <h5>Choose Recipients</h5>
+        <hr />
+
+        <nb-checkbox>All Users</nb-checkbox><br>
+        <nb-checkbox>Users with Unpaid Invoices</nb-checkbox> <br>
+        <nb-checkbox>Users with Uncollected Packages</nb-checkbox>
+
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+
+  </nb-card-footer>
+</nb-card>

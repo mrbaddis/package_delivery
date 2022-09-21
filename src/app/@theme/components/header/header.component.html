@@ -1,0 +1,25 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a *ngIf="courier$ | async as courier" class="logo" href="#" (click)="navigateHome()">
+      <img [src]="courier.imageUrl" alt="">
+      <!-- {{courier.name}} -->
+    </a>
+  </div>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+
+    <nb-action class="user-action"  >
+      <nb-user *ngIf="user$ | async as user" [nbContextMenu]="userMenu"
+               [name]= "user.firstName + ' ' + user.lastName"
+
+              >
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

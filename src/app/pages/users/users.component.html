@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-header> System Users </nb-card-header>
+  <nb-card-body>
+
+      <nb-form-field class="search">
+        <input (input)="resetSearch(search.value.length)" (keydown.enter)="onSearch(search.value)" placeholder="Search... Enter 3 or more characters" #search type="text" nbInput />
+        <button nbSuffix nbButton ghost (click)="onSearch(search.value)">
+          <nb-icon icon="search-outline" pack="eva"> </nb-icon>
+        </button>
+      </nb-form-field>
+
+    <ng2-smart-table
+    *ngIf="userListReady && userRolesReady"
+      (userRowSelect)="viewCustomer($event)"
+      [settings]="settings"
+      [source]="source"
+      (deleteConfirm)="onDeleteConfirm($event)"
+      (createConfirm)="onCreateConfirm($event)"
+    >
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

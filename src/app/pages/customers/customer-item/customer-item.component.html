@@ -1,0 +1,16 @@
+<nb-card *ngIf="customer">
+  <!-- <nb-card-header>
+
+  <div class="actions">
+    <button nbButton status="danger"><nb-icon icon="trash"></nb-icon></button>
+  </div>
+  </nb-card-header> -->
+
+  <nb-card-body>
+    {{customer.firstName || 'Profile'}} {{customer.lastName || 'Incomplete'}} - {{customer.mailboxes[0].mailboxNumber || '####' | mailbox }}
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton status="primary"> <nb-icon icon="eye"></nb-icon> </button>
+  </nb-card-footer>
+</nb-card>

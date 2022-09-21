@@ -1,0 +1,67 @@
+<div *ngIf="settingsForm" >
+  <div id="icon-pack-row" class="row">
+    <div class="col-sm-12">
+      <h5>Icon Pack</h5>
+      <div class="form-group">
+        <nb-select [(ngModel)]="selectedIconPack" (selectedChange)="setIconPackById($event)" placeholder="Choose an icon pack" fullWidth>
+          <nb-option [value]="iconPack.id"  *ngFor="let iconPack of iconPacks; let i=index">
+            {{iconPack.name}}
+          </nb-option>
+          <nb-option disabled>
+            Create Custom Icon Pack (Coming Soon)
+          </nb-option>
+        </nb-select>
+      </div>
+      <div id="icon-row">
+        <img *ngFor="let img of iconPackImages" [src]="img" alt="">
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="settingsForm">
+    <div class="row">
+      <div *ngFor="let swatch of themeSwatches" class="col-sm-6">
+        <h5>{{swatch.name}} Swatch</h5>
+        <hr />
+        <div class="form-group flex-between">
+          <label>{{swatch.name}} Color</label>
+          <input hidden [formControl]="swatch.backgroundControl" />
+          <button
+            nbButton
+            outline
+            (colorPickerChange)="setControlValue(swatch.backgroundControl, $event)"
+            [(colorPicker)]="swatch.backgroundControl.value"
+          >
+            <nb-icon icon="color-palette"></nb-icon> Set Color
+          </button>
+        </div>
+        <div class="form-group flex-between">
+          <label>{{swatch.name}} Text Color</label>
+          <input hidden [formControl]="swatch.textControl" />
+          <button
+          (colorPickerChange)="setControlValue(swatch.textControl, $event)"
+            [(colorPicker)]="swatch.textControl.value"
+            nbButton
+            outline
+          >
+            <nb-icon icon="color-palette"></nb-icon> Set Text Color
+          </button>
+        </div>
+        <div
+          class="color-previewer"
+          [style.background]="swatch.backgroundControl.value"
+        >
+          <span [style.color]="swatch.textControl.value"
+            >This is the color of the swatch.</span
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+    <div class="btn-row btn">
+      <button (click)="updateSettings()" nbButton status="success">UPDATE</button>
+    </div>
+
+</div>

@@ -1,0 +1,124 @@
+<form *ngIf="userForm" [formGroup]="userForm">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">First Name</label>
+        <input
+          [formControl]="userForm.controls.firstName"
+          nbInput
+          fullWidth
+          placeholder="First Name"
+        />
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">Last Name</label>
+        <input
+          [formControl]="userForm.controls.lastName"
+          nbInput
+          fullWidth
+          placeholder="Last Name"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">Email</label>
+        <input
+          [formControl]="userForm.controls.email"
+          nbInput
+          fullWidth
+          placeholder="Email"
+        />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">Phone Number</label>
+        <input
+          [formControl]="userForm.controls.phoneNumber"
+          nbInput
+          fullWidth
+          placeholder="Phone Number"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">Street 1</label>
+        <input
+          [formControl]="userForm.controls.street1"
+          nbInput
+          fullWidth
+          placeholder="Street 1"
+        />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">Street 2</label>
+        <input
+          [formControl]="userForm.controls.street2"
+          nbInput
+          fullWidth
+          placeholder="Street 2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">City</label>
+        <input
+          [formControl]="userForm.controls.city"
+          nbInput
+          fullWidth
+          placeholder="City"
+        />
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="label">Parish</label>
+        <input
+          [formControl]="userForm.controls.state"
+          nbInput
+          fullWidth
+          placeholder="Parish"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <nb-form-field>
+          <label class="label">Tax Registration Number</label>
+        <input fullWidth [formControl]="userForm.controls.trnNumber" [type]="getInputType()" nbInput>
+        <button id="btn-suffix" nbSuffix nbButton ghost (click)="toggleShowPassword()">
+          <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                   pack="eva"
+                   [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+          </nb-icon>
+        </button>
+        </nb-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button [disabled]="userForm.invalid" (click)="updateProfile()" nbButton outline fullWidth status="success">UPDATE PROFILE</button>
+    <button (click)="sendPasswordResetEmail(userForm.controls.email.value)" nbButton outline fullWidth status="warning">TRIGGER PASSWORD RESET</button>
+  </div>
+</form>

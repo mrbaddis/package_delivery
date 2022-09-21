@@ -1,0 +1,15 @@
+<input #autoInput
+      nbInput
+      type="text"
+      (input)="onChange()"
+      placeholder="Search customer"
+      [disabled]="!cell.isEditable()"
+      [nbAutocomplete]="auto" />
+
+    <nb-autocomplete #auto >
+
+      <nb-option (click)="onSelectionChange(option)" *ngFor="let option of filteredUsers$ | async" [value]="option.combined">
+        {{option.combined}}
+      </nb-option>
+
+    </nb-autocomplete>
